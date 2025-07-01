@@ -1,0 +1,72 @@
+mensagem = """
+===========MENU===========
+
+[1] DEPOSITO
+[2] SAQUE
+[3] EXTRATO
+[0] SAIR
+
+==========================
+"""
+
+
+saldo = 0
+extrato = ""
+LIMITE = 500
+QUANTIDADE_DE_SAQUES = 3
+deposito = 0
+numeros_saques = 0
+
+
+
+while True:
+    opcao = input(mensagem)
+
+    if opcao == "1":
+        valor = float(input("Informe o valor desejado do deposito: "))
+
+        if valor  > 0:
+            saldo += valor
+            extrato += f'Depósito: R$ {valor:.2f}:\n'
+
+        else:
+            print("Operação falhou! O valor informado é invalido.")
+
+    elif opcao == "2":
+        valor = float(input("Informe o valor do saque: "))
+
+        excedeu_saldo = valor > saldo
+
+        excedeu_limite = valor > LIMITE
+
+        excedeu_saques = numeros_saques >= QUANTIDADE_DE_SAQUES
+
+        if  excedeu_saldo:
+            print("Operação falhou! Saldo insuficiente!")
+        
+        elif excedeu_limite:
+            print("Operação falhou! O valor  informado excede o limite!")
+
+        elif excedeu_saques:
+            print("Operação falhou! Número máximo de saques excedido.")
+        
+        elif valor > 0:
+            saldo -= valor
+            extrato += f'Depósito: R$ {valor:.2f}:\n'
+            numeros_saques += 1
+        else:
+            print("Operação falhou! O valor informado é inválido!")
+
+    elif opcao == "3":
+        print("=======EXTRATO=======")
+        print("Não foram realizadas movimentação!" if not extrato else extrato)
+        print("=====================")
+    
+    elif opcao  == "0":
+        break   
+    else:
+        ("Opção invalida! Tente novamente!")
+
+#Desafio do Bootcamp Santander 2025, onde o objetivo é desenvolver um sistema bancário simples em Python
+#com as funcionalidades de depósito, saque (com limite de R$500 por saque e até 3 saques diários)
+#e extrato. O sistema deve validar saldo e registrar todas as transações.
