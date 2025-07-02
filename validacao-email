@@ -1,0 +1,14 @@
+# Entrada do usuário
+email = input().strip()
+
+# TODO: Verifique as regras do e-mail:
+if (
+    " " in email or
+    email[0] == "@" or 
+    email[-0] == "@" or
+    "@" not in email or
+    not email.endswith(("gmail.com","outlook.com"))
+):
+    print("E-mail inválido")
+else:
+    print("E-mail válido")
