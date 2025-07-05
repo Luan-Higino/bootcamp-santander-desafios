@@ -1,0 +1,33 @@
+# Lista para armazenar os produtos e preços
+carrinho = []
+total = 0.0
+
+# Entrada do número de itens
+n = int(input().strip())
+
+# Loop para adicionar itens ao carrinho
+for _ in range(n):
+    linha = input().strip()
+    
+    # Encontra a última ocorrência de espaço para separar nome e preço
+    posicao_espaco = linha.rfind(" ")
+    
+    # Separa o nome do produto e o preço
+    item = linha[:posicao_espaco]
+    preco = float(linha[posicao_espaco + 1:])
+    
+    # Adiciona ao carrinho
+    carrinho.append((item, preco))
+    total += preco
+
+# TODO: Exiba os itens e o total da compra
+for item, preco in carrinho:
+  print(f"{item}: R${preco:.2f}")
+
+print(f"Total: R${total:.2f}")  
+
+# Desafio: Simulador de Carrinho de Compras
+# Objetivo: Criar um sistema que permite adicionar produtos (nome e preço)
+# ao carrinho e calcular o valor total da compra.
+# Entrada: Nome e preço de cada produto.
+# Saída: Lista dos produtos adicionados com seus preços e o total da compra.
